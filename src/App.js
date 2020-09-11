@@ -1,7 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
+import "./App.css";
+import Sidebar from "./components/Sidebar";
+import MessagesList from "./components/MessagesList";
+import AddMessage from "./components/AddMessage";
 
-function App() {
-  return <div>Hello</div>;
+class App extends Component {
+  render() {
+    return (
+      <div id="container">
+        <Sidebar />
+        <section id="main">
+          <MessagesList />
+          <AddMessage />
+        </section>
+      </div>
+    );
+  }
 }
 
 export default App;
