@@ -1,14 +1,16 @@
 import React from "react";
-import { addMessage } from "../actions/index";
 
 const AddMessage = (props) => {
   let input;
   return (
-    <section id="newMessage">
+    <section id="new-message">
       <input
         onKeyPress={(e) => {
-          if (e.key === "Enter") props.dispatch(addMessage(input.value, "Me"));
-          input.value = "";
+          if (e.key === "Enter") {
+            console.log(input.value);
+            props.dispatch(input.value, "Me");
+            input.value = "";
+          }
         }}
         type="text"
         ref={(node) => {

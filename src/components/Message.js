@@ -2,7 +2,7 @@ import React from "react";
 
 const Message = ({ message, author }) => (
   <p>
-    <i>{author}</i> : message
+    <i>{author}</i> : {message}
   </p>
 );
 
