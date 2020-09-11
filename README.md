@@ -1,1 +1,1 @@
-A simple chat applicated built using React, Redux, Redux-saga and web sockets.
+A simple chat application built using React, Redux, Redux-saga and web sockets.
