@@ -1,6 +1,7 @@
 const WebSocket = require("ws");
+const randomID = require("./utils/randomID");
 const wss = new WebSocket.Server({ port: 8989 });
-const users = [];
+let users = [];
 
 const broadcast = (data, ws) => {
   wss.clients.forEach((client) => {
@@ -11,13 +12,14 @@ const broadcast = (data, ws) => {
 };
 
 wss.on("connection", (ws) => {
-  let index;
+  let userID;
   ws.on("message", (message) => {
     const data = JSON.parse(message);
     switch (data.type) {
       case "ADD_USER": {
-        index = users.length;
-        users.push({ id: index, name: data.name });
+        userID = randomID.makeid();
+        users.push({ id: userID, name: data.name });
+
         ws.send(
           JSON.stringify({
             type: "USERS_LIST",
@@ -50,7 +52,9 @@ wss.on("connection", (ws) => {
   });
 
   ws.on("close", () => {
-    users.splice(index, 1);
+    users = users.filter((u) => {
+      return u.id != userID;
+    });
     broadcast(
       {
         type: "USERS_LIST",
