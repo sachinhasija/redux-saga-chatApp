@@ -3,7 +3,7 @@ import React from "react";
 const AddMessage = (props) => {
   let input;
   return (
-    <section id="new-message">
+    <section className="new-message">
       <input
         onKeyPress={(e) => {
           if (e.key === "Enter") {

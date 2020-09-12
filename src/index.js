@@ -9,13 +9,19 @@ import App from "./App";
 import reducers from "./reducers/index";
 import setupSocket from "./sockets";
 import handleNewMessage from "./sagas";
-import username from "./utils/name";
+import setBackgroundImage from "./utils/setBackgoundImage";
+import { setUserInfo } from "./utils/name";
+import globals from "./utils/globals";
 
+setUserInfo();
+setBackgroundImage();
+
+const { username, tag } = globals.getUserInfo();
 const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(reducers, applyMiddleware(sagaMiddleWare));
-const socket = setupSocket(store.dispatch, username);
+const socket = setupSocket(store.dispatch, username, tag);
 
-sagaMiddleWare.run(handleNewMessage, { socket, username });
+sagaMiddleWare.run(handleNewMessage, { socket, username, tag });
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,3 +1,23 @@
-let index = Math.floor(Math.random() * Math.floor(10 ** 10));
-const username = "User" + index;
-export default username;
+import globals from "./globals";
+
+const setUserInfo = () => {
+  let username = prompt("Enter your name");
+  username = validUN(username);
+
+  let userTag = username
+    .match(/\b(\w)/g)
+    .join("")
+    .toUpperCase();
+  globals.setUserInfo(username, userTag);
+};
+
+function validUN(username = "") {
+  if (username) {
+    return username;
+  }
+  alert("Enter a valid username");
+  username = prompt("Enter your name");
+  return validUN(username);
+}
+
+export { setUserInfo };

@@ -7,9 +7,9 @@ import { AddMessage } from "./containers/AddMessage";
 class App extends Component {
   render() {
     return (
-      <div id="container">
+      <div className="container">
         <Sidebar />
-        <section id="main">
+        <section className="main">
           <MessagesList />
           <AddMessage />
         </section>

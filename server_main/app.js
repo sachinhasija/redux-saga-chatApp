@@ -18,7 +18,7 @@ wss.on("connection", (ws) => {
     switch (data.type) {
       case "ADD_USER": {
         userID = randomID.makeid();
-        users.push({ id: userID, name: data.name });
+        users.push({ id: userID, name: data.name, tag: data.tag });
 
         ws.send(
           JSON.stringify({

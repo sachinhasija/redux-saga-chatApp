@@ -15,10 +15,11 @@ export const addMessage = (message, author) => ({
   author,
 });
 
-export const addUser = (name) => ({
+export const addUser = (name, tag) => ({
   type: ADD_USER,
   id: nextUserId,
   name,
+  tag,
 });
 
 export const messageReceived = (message, author) => ({

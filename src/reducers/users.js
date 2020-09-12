@@ -6,6 +6,7 @@ const users = (state = [], action) => {
       return state.concat([
         {
           name: action.name,
+          tag: action.tag,
           id: action.id,
         },
       ]);
