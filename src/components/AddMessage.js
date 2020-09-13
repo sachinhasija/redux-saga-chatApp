@@ -3,7 +3,7 @@ import React from "react";
 const AddMessage = (props) => {
   let input;
   return (
-    <section className="new-message">
+    <section className="new-message user-input">
       <input
         onKeyPress={(e) => {
           if (e.key === "Enter") {
@@ -15,6 +15,9 @@ const AddMessage = (props) => {
         ref={(node) => {
           input = node;
         }}
+        name="message"
+        placeholder="Send a message"
+        autoComplete="off"
       />
     </section>
   );

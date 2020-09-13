@@ -8,7 +8,7 @@ import "./index.css";
 import App from "./App";
 import reducers from "./reducers/index";
 import setupSocket from "./sockets";
-import handleNewMessage from "./sagas";
+import { rootSaga } from "./sagas/index";
 import setBackgroundImage from "./utils/setBackgoundImage";
 import { setUserInfo } from "./utils/name";
 import globals from "./utils/globals";
@@ -21,7 +21,7 @@ const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(reducers, applyMiddleware(sagaMiddleWare));
 const socket = setupSocket(store.dispatch, username, tag);
 
-sagaMiddleWare.run(handleNewMessage, { socket, username, tag });
+sagaMiddleWare.run(rootSaga, { socket, username, tag });
 
 ReactDOM.render(
   <React.StrictMode>

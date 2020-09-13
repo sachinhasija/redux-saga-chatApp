@@ -1,23 +1,18 @@
 import globals from "./globals";
+let userDefID = Math.floor(Math.random() * Math.floor(10 ** 10));
 
-const setUserInfo = () => {
-  let username = prompt("Enter your name");
-  username = validUN(username);
-
-  let userTag = username
-    .match(/\b(\w)/g)
-    .join("")
-    .toUpperCase();
+const setUserInfo = (username = "") => {
+  let userTag;
+  if (username) {
+    userTag = username
+      .match(/\b(\w)/g)
+      .join("")
+      .toUpperCase();
+  } else {
+    userTag = "DF";
+    username = "Default" + userDefID;
+  }
   globals.setUserInfo(username, userTag);
 };
-
-function validUN(username = "") {
-  if (username) {
-    return username;
-  }
-  alert("Enter a valid username");
-  username = prompt("Enter your name");
-  return validUN(username);
-}
 
 export { setUserInfo };

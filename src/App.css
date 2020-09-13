@@ -12,6 +12,7 @@ body {
   background-size: cover;
   font-family: "Baloo Tammudu 2", Helvetica, sans-serif;
   font-size: 16px;
+  color: #232b2b;
 }
 .container {
   display: flex;
@@ -24,17 +25,38 @@ body {
   height: 80vh;
   margin-top: 2em;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.8);
 }
-.new-message {
-  position: fixed;
-  bottom: 0;
+.userInputMain {
+  display: flex;
+  margin-top: 20px;
+}
+
+.userInputMain .new-message {
+  margin-right: 20px;
+}
+
+input {
   width: 100%;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background-color: #ccc;
   padding: 5px;
-  margin-left: 0px;
+  border-radius: 15px;
 }
+
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #28a2a2;
+}
+
 .messages-list {
-  padding: 5px 0 0 5px;
+  padding: 20px;
+}
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
 }
 .sidebar {
   padding: 10px;
@@ -65,4 +87,39 @@ body {
 .sidebar ul .userBg p {
   margin: auto;
   font-size: 0.5em;
+}
+
+.messages {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.messages h3 {
+  display: flex;
+  font-size: 1.2em;
+  font-weight: 700;
+  min-width: 10%;
+  margin-right: 10px;
+}
+.user-input-form {
+  font-size: 1em;
+}
+.userBg-one {
+  background: #ea5e3d !important;
+}
+.userBg-two {
+  background: #0e1111 !important;
+}
+.userBg-three {
+  background: #90b17e !important;
+}
+.userBg-four {
+  background: #4053db !important;
+}
+.userBg-five {
+  background: #db40d5 !important;
+}
+.userBg-six {
+  background: #64641d !important;
 }

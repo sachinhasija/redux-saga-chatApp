@@ -1,12 +1,27 @@
-import { takeEvery } from "redux-saga/effects";
-import { ADD_MESSAGE } from "../constants/ActionsTypes";
+import { takeEvery, takeLatest, all } from "redux-saga/effects";
+import { ADD_MESSAGE, SET_UINFO } from "../constants/ActionsTypes";
+import globals from "../utils/globals";
 
-const handleNewMessage = function* (params) {
-  yield takeEvery(ADD_MESSAGE, (action) => {
-    action.author = params.username;
-    action.tag = params.tag;
-    params.socket.send(JSON.stringify(action));
-  });
+const handleFirstUserInput = function (params, action) {
+  let userInfo = globals.getUserInfo();
+  action.name = userInfo.username;
+  action.tag = userInfo.tag;
+  action.default = params.defaultName;
+  params.socket.send(JSON.stringify(action));
 };
 
-export default handleNewMessage;
+const handleNewMessage = function (params, action) {
+  let userInfo = globals.getUserInfo();
+  action.author = userInfo.username;
+  action.tag = userInfo.tag;
+  params.socket.send(JSON.stringify(action));
+};
+
+function* watcher(params) {
+  yield takeLatest(SET_UINFO, handleFirstUserInput, params);
+  yield takeEvery(ADD_MESSAGE, handleNewMessage, params);
+}
+
+export function* rootSaga(params) {
+  yield all([watcher(params)]);
+}

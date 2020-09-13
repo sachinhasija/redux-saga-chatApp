@@ -3,6 +3,7 @@ import {
   MESSAGE_RECEIVED,
   ADD_USER,
   USERS_LIST,
+  SET_UINFO,
 } from "../constants/ActionsTypes";
 
 let nextMessageID = 0;
@@ -32,4 +33,10 @@ export const messageReceived = (message, author) => ({
 export const populateUsersList = (users) => ({
   type: USERS_LIST,
   users,
+});
+
+export const setUserInfoAction = (username, defaultName) => ({
+  type: SET_UINFO,
+  username,
+  defaultName,
 });

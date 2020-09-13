@@ -35,6 +35,23 @@ wss.on("connection", (ws) => {
         );
         break;
       }
+      case "SET_UINFO":
+        {
+          users.forEach((u) => {
+            if (u.name == data.defaultName) {
+              u.name = data.username;
+              u.tag = data.tag;
+            }
+          });
+          broadcast(
+            {
+              type: "USERS_LIST",
+              users,
+            },
+            ws
+          );
+        }
+        break;
       case "ADD_MESSAGE": {
         broadcast(
           {
