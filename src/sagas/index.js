@@ -2,19 +2,19 @@ import { takeEvery, takeLatest, all } from "redux-saga/effects";
 import { ADD_MESSAGE, SET_UINFO } from "../constants/ActionsTypes";
 import globals from "../utils/globals";
 
-const handleFirstUserInput = function (params, action) {
+export const handleFirstUserInput = function* (params = {}, action = {}) {
   let userInfo = globals.getUserInfo();
   action.name = userInfo.username;
   action.tag = userInfo.tag;
   action.default = params.defaultName;
-  params.socket.send(JSON.stringify(action));
+  yield params.socket.send(JSON.stringify(action));
 };
 
-const handleNewMessage = function (params, action) {
+export const handleNewMessage = function* (params = {}, action = {}) {
   let userInfo = globals.getUserInfo();
   action.author = userInfo.username;
   action.tag = userInfo.tag;
-  params.socket.send(JSON.stringify(action));
+  yield params.socket.send(JSON.stringify(action));
 };
 
 function* watcher(params) {
